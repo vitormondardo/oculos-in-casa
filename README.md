@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Óculos InCasa
 
-## Getting Started
+Site institucional da **Óculos InCasa**, ótica com atendimento domiciliar.
+Destaque para a experiência de óculos em 3D animada pelo scroll da página.
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [React Three Fiber](https://r3f.docs.pmnd.rs) + [drei](https://github.com/pmndrs/drei) — cena 3D
+- [Lenis](https://github.com/darkroomengineering/lenis) + [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) — scroll suave e progresso por seção
+- [maath/easing](https://github.com/pmndrs/maath) — damping independente de framerate
+- [zustand](https://github.com/pmndrs/zustand) — ponte de estado entre o DOM e o Canvas
+
+## Rodando localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/            # rotas (App Router)
+  components/
+    three/        # Canvas, cena, óculos procedural, viewer de produto
+    sections/     # seções da home (Hero, Produto, Lentes, Serviços, ...)
+    ui/           # componentes de interface (Header, Footer, botões)
+  lib/
+    scroll/       # Lenis + hook de trigger de seção
+    store/        # store zustand da cena 3D
+    three/        # poses/keyframes por seção
+    whatsapp.ts   # geração de links wa.me
+    seo.ts        # JSON-LD
+  content/        # dados tipados: produtos, serviços, empresa
+```
 
-## Learn More
+## Catálogo 3D
 
-To learn more about Next.js, take a look at the following resources:
+Os modelos de óculos hoje são **gerados por código**
+(`ProceduralGlasses.tsx`), seguindo a convenção de nós
+`frame / lens_L / lens_R / temple_L / temple_R`. Quando os modelos `.glb`
+reais estiverem prontos, adicione o arquivo em `public/models/<slug>.glb`,
+preencha `modelUrl` no produto correspondente (`src/content/products.ts`) e
+troque `ProceduralGlasses` por um componente `GlassesModel` que carrega o GLB
+via `useGLTF`, reaproveitando a mesma convenção de nomes para aplicar as
+variantes de cor/material.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuração pendente antes de publicar
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/content/company.ts`: número real de WhatsApp, e-mail, áreas atendidas.
+- `src/lib/seo.ts`: `siteUrl` com o domínio definitivo.
+- Vetorizar o logo (`public/brand/logo.jpg`) em SVG branco/preto e gerar
+  favicon/ícones (`app/icon.png`, `apple-icon.png`) e imagem OG dedicada.
+- Substituir os posters de produto (`poster` em `products.ts`), hoje
+  apontando para o logo como placeholder.
 
-## Deploy on Vercel
+## Build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Gera todas as rotas estaticamente (SSG), incluindo `/produtos/[slug]` via
+`generateStaticParams`.
