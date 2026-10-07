@@ -17,7 +17,7 @@ export function WhatsAppButton({ produto, servico, className = "", children }: W
       target="_blank"
       rel="noopener noreferrer"
       className={
-        "inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-black transition-transform duration-200 hover:scale-[1.03] " +
+        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-[#25D366]/20 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97] " +
         className
       }
     >

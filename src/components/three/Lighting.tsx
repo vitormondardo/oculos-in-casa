@@ -19,8 +19,8 @@ export function Lighting() {
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-      <directionalLight position={[-4, 2, -3]} intensity={0.6} color="#8fb8ff" />
-      <pointLight position={[0, -2, 3]} intensity={0.4} color="#ffe3b3" />
+      <directionalLight position={[-4, 2, -3]} intensity={0.6} color="#2bb5a6" />
+      <pointLight position={[0, -2, 3]} intensity={0.4} color="#e6d3a1" />
       <Environment preset="city" environmentIntensity={0.5} />
     </>
   );

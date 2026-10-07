@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000).
+Abra [http://localhost:3100](http://localhost:3100).
 
 ## Estrutura
 

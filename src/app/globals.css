@@ -1,31 +1,130 @@
 @import "tailwindcss";
 
+/*
+ * Tokens semânticos. O tema padrão é escuro (identidade preto/branco da logo).
+ * Seções claras usam data-theme="light", que redefine apenas os tokens —
+ * os componentes nunca referenciam hex diretamente.
+ */
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
-  --surface: #111111;
-  --surface-alt: #161616;
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --muted: rgba(245, 245, 245, 0.68);
+  --surface: #121214;
+  --surface-alt: #1a1a1d;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.3);
+
+  /* Champagne: detalhes premium, ligado a armações e acabamentos */
   --accent: #c9a24b;
+  --accent-soft: #e6d3a1;
+  /* Teal clínico: saúde visual, confiança, passos e ícones */
+  --teal: #2bb5a6;
+  --teal-deep: #0f6f66;
+  --lens-blue: #8fb8ff;
+
+  /* Cor dos "eyebrows" (legível em cada tema) */
+  --kicker: var(--accent);
+  /* Botão primário invertido em relação ao fundo */
+  --invert: #ffffff;
+  --on-invert: #0a0a0a;
+}
+
+[data-theme="light"] {
+  --background: #f6f1e9;
+  --foreground: #16161a;
+  --muted: rgba(22, 22, 26, 0.68);
+  --surface: #ffffff;
+  --surface-alt: #efe8dc;
+  --line: rgba(22, 22, 26, 0.1);
+  --line-strong: rgba(22, 22, 26, 0.3);
+  --kicker: var(--teal-deep);
+  --invert: #0a0a0a;
+  --on-invert: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-teal: var(--teal);
+  --color-teal-deep: var(--teal-deep);
+  --color-lens-blue: var(--lens-blue);
+  --color-kicker: var(--kicker);
+  --color-invert: var(--invert);
+  --color-on-invert: var(--on-invert);
   --font-sans: var(--font-poppins);
+  --font-display: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Foco visível e consistente em qualquer fundo */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Títulos grandes (escala fluida) */
+.text-display {
+  font-size: clamp(2.5rem, 7vw, 5.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.text-headline {
+  font-size: clamp(1.875rem, 4.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+@keyframes gradient-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 8%) scale(1.1);
+  }
+}
+
+@keyframes gradient-drift-slow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-6%, -6%) scale(1.08);
+  }
+}
+
+.animate-gradient-drift {
+  animation: gradient-drift 18s ease-in-out infinite;
+}
+
+.animate-gradient-drift-slow {
+  animation: gradient-drift-slow 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-drift,
+  .animate-gradient-drift-slow {
+    animation: none;
   }
 }

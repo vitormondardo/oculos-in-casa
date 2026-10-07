@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { products } from "@/content/products";
+import { Reveal, RevealGroup } from "@/components/ui/Reveal";
+import { Card } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
   title: "Produtos",
@@ -10,44 +12,49 @@ export const metadata: Metadata = {
 export default function ProdutosPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 pb-24 pt-32">
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-        Catálogo
-      </p>
-      <h1 className="text-3xl font-semibold sm:text-4xl">Nossos óculos</h1>
-      <p className="mt-4 max-w-xl text-white/70">
-        Explore os modelos disponíveis para experimentar em casa. Cada um pode
-        ser visto em 3D, com todas as opções de cor.
-      </p>
+      <Reveal>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-kicker">
+          Catálogo
+        </p>
+        <h1 className="text-headline font-light">
+          Nossos <span className="font-display italic text-accent-soft">óculos</span>
+        </h1>
+        <p className="mt-4 max-w-xl text-muted">
+          Explore os modelos disponíveis para experimentar em casa. Cada um pode
+          ser visto em 3D, com todas as opções de cor.
+        </p>
+      </Reveal>
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
+          <Card key={product.slug}>
           <Link
-            key={product.slug}
             href={`/produtos/${product.slug}`}
-            className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/30"
+            className="group block"
           >
             <div className="flex items-center gap-2">
               {product.variants.slice(0, 4).map((v) => (
                 <span
                   key={v.id}
-                  className="h-4 w-4 rounded-full border border-white/20"
+                  className="h-4 w-4 rounded-full border border-line-strong"
                   style={{ backgroundColor: v.frameColor }}
                 />
               ))}
             </div>
-            <h2 className="mt-4 font-semibold text-white">{product.name}</h2>
-            <p className="mt-1 text-sm text-white/60">{product.category}</p>
+            <h2 className="mt-4 font-semibold text-foreground">{product.name}</h2>
+            <p className="mt-1 text-sm text-muted">{product.category}</p>
             {product.price && (
-              <p className="mt-3 text-sm text-white/80">
+              <p className="mt-3 text-sm text-foreground">
                 {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
               </p>
             )}
-            <span className="mt-4 inline-block text-sm font-semibold text-white underline underline-offset-4 group-hover:text-accent">
+            <span className="mt-4 inline-block text-sm font-semibold text-foreground underline decoration-accent underline-offset-4 group-hover:text-accent">
               Ver em 3D →
             </span>
           </Link>
+          </Card>
         ))}
-      </div>
+      </RevealGroup>
     </div>
   );
 }
