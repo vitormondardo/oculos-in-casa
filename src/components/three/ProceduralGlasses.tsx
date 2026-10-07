@@ -129,11 +129,11 @@ export function ProceduralGlasses({
         color: lensColor,
         metalness: 0,
         roughness: 0.05,
-        transmission: 0.85,
-        thickness: 0.05,
-        ior: 1.5,
+        // Sem `transmission`: ele força um render extra da cena inteira a cada
+        // frame. Transparência simples + reflexo do ambiente fica parecido.
+        clearcoat: 1,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.4,
       }),
     [lensColor],
   );

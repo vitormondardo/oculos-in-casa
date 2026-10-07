@@ -26,7 +26,7 @@ export function LensesSection() {
           <ul className="mt-8 space-y-4">
             {features.map((f) => (
               <RevealItem as="li" key={f.title}>
-                <div className="flex gap-4 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-sm transition-colors duration-200 hover:border-teal/50">
+                <div className="flex gap-4 rounded-2xl border border-line bg-surface/90 p-5 transition-colors duration-200 hover:border-teal/50">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal/15 text-teal">
                     <Icon name={f.icon} />
                   </span>

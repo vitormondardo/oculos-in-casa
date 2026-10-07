@@ -7,6 +7,6 @@ export const company: CompanyInfo = {
   whatsappNumber: "5547999454030",
   email: "contato@oculosincasa.com.br",
   instagram: "https://instagram.com/oculosincasa",
-  serviceAreas: ["São Paulo", "Grande São Paulo"],
+  serviceAreas: ["Santa Catarina", "Joinville"],
   hours: "Seg. a Sáb., 8h às 20h",
 };

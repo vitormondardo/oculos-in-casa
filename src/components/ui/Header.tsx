@@ -30,9 +30,9 @@ export function Header() {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: duration.base, ease }}
-      className={`fixed inset-x-0 top-0 z-40 border-b backdrop-blur-md transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${
         scrolled || open
-          ? "border-white/10 bg-black/70"
+          ? "border-white/10 bg-black/85"
           : "border-transparent bg-transparent"
       }`}
     >

@@ -28,6 +28,7 @@ function supportsWebGL(): boolean {
  */
 export function SceneRoot() {
   const pathname = usePathname();
+  const quality = useSceneStore((s) => s.quality);
   const setQuality = useSceneStore((s) => s.setQuality);
   const setReducedMotion = useSceneStore((s) => s.setReducedMotion);
   const [webglOk, setWebglOk] = useState(true);
@@ -57,10 +58,9 @@ export function SceneRoot() {
       style={{ opacity: isHome ? 1 : 0.35 }}
     >
       <Canvas
-        dpr={[1, 1.75]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={quality === "low" ? 1 : [1, 1.5]}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         camera={{ position: [0, 0, 4.2], fov: 35 }}
-        shadows
         frameloop={isHome ? "always" : "demand"}
       >
         <PerformanceMonitor

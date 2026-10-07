@@ -16,8 +16,6 @@ export function Lighting() {
         angle={0.35}
         penumbra={0.6}
         intensity={2.2}
-        castShadow
-        shadow-mapSize={[1024, 1024]}
       />
       <directionalLight position={[-4, 2, -3]} intensity={0.6} color="#2bb5a6" />
       <pointLight position={[0, -2, 3]} intensity={0.4} color="#e6d3a1" />
