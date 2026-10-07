@@ -1,11 +1,11 @@
 const base =
-  "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-[background-color,border-color,color,transform] duration-200 active:scale-[0.97]";
+  "group inline-flex min-h-12 cursor-pointer items-center justify-center gap-3 border px-7 py-3 text-xs font-semibold uppercase tracking-[0.2em] transition-[background-color,border-color,color,transform] duration-200 active:translate-y-px";
 
 const variants = {
-  primary: "bg-invert text-on-invert hover:opacity-90",
-  outline: "border border-line-strong text-foreground hover:border-foreground hover:bg-foreground/10",
-  teal: "bg-teal text-black hover:bg-teal/85",
-  ghost: "text-muted hover:text-foreground",
+  primary: "border-invert bg-invert text-on-invert hover:bg-transparent hover:text-invert",
+  outline: "border-line-strong text-foreground hover:border-foreground hover:bg-foreground hover:text-background",
+  teal: "border-teal bg-teal text-black hover:bg-transparent hover:text-teal",
+  ghost: "border-transparent text-muted hover:text-foreground",
 };
 
 export type ButtonVariant = keyof typeof variants;

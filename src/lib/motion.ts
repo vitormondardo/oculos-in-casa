@@ -16,6 +16,12 @@ export const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: duration.base, ease } },
 };
 
+/** Linha de título que sobe de dentro de uma máscara (overflow-hidden no pai). */
+export const lineUp: Variants = {
+  hidden: { y: "108%" },
+  show: { y: "0%", transition: { duration: 0.85, ease } },
+};
+
 export const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.94 },
   show: { opacity: 1, scale: 1, transition: { duration: duration.base, ease } },

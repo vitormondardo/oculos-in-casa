@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins } from "next/font/google";
+import { Fraunces, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SceneRoot } from "@/components/three/SceneRoot";
 import { MotionProvider } from "@/components/MotionProvider";
@@ -11,16 +11,17 @@ import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { company } from "@/content/company";
 import { opticianJsonLd, siteUrl } from "@/lib/seo";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const body = Instrument_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+// Fraunces: serifa de contraste com eixos "opsz/SOFT/WONK" — dá o tom editorial.
+const display = Fraunces({
+  variable: "--font-display-src",
   subsets: ["latin"],
   style: ["normal", "italic"],
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${poppins.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang="pt-BR" className={`${body.variable} ${display.variable} h-full antialiased`}>
       <body className="relative isolate flex min-h-full flex-col">
         <script
           type="application/ld+json"

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { products } from "@/content/products";
-import { Reveal, RevealGroup } from "@/components/ui/Reveal";
-import { Card } from "@/components/ui/Card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { Kicker } from "@/components/ui/Kicker";
 
 export const metadata: Metadata = {
   title: "Produtos",
@@ -11,48 +11,54 @@ export const metadata: Metadata = {
 
 export default function ProdutosPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 pb-24 pt-32">
+    <div className="mx-auto max-w-6xl px-6 pb-28 pt-36">
       <Reveal>
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-kicker">
-          Catálogo
-        </p>
-        <h1 className="text-headline font-light">
+        <Kicker n="Catálogo" className="mb-6">Armações</Kicker>
+        <h1 className="text-display font-light">
           Nossos <span className="font-display italic text-accent-soft">óculos</span>
         </h1>
-        <p className="mt-4 max-w-xl text-muted">
+        <p className="mt-8 max-w-xl text-muted">
           Explore os modelos disponíveis para experimentar em casa. Cada um pode
           ser visto em 3D, com todas as opções de cor.
         </p>
       </Reveal>
 
-      <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <Card key={product.slug}>
-          <Link
-            href={`/produtos/${product.slug}`}
-            className="group block"
-          >
-            <div className="flex items-center gap-2">
-              {product.variants.slice(0, 4).map((v) => (
-                <span
-                  key={v.id}
-                  className="h-4 w-4 rounded-full border border-line-strong"
-                  style={{ backgroundColor: v.frameColor }}
-                />
-              ))}
-            </div>
-            <h2 className="mt-4 font-semibold text-foreground">{product.name}</h2>
-            <p className="mt-1 text-sm text-muted">{product.category}</p>
-            {product.price && (
-              <p className="mt-3 text-sm text-foreground">
-                {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-              </p>
-            )}
-            <span className="mt-4 inline-block text-sm font-semibold text-foreground underline decoration-accent underline-offset-4 group-hover:text-accent">
-              Ver em 3D →
-            </span>
-          </Link>
-          </Card>
+      <RevealGroup className="mt-16 grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product, i) => (
+          <RevealItem key={product.slug} className="border-b border-r border-line bg-background transition-colors duration-200 hover:bg-surface">
+            <Link href={`/produtos/${product.slug}`} className="group flex h-full min-h-72 flex-col justify-between p-7">
+              <div className="flex items-start justify-between">
+                <span className="font-display text-5xl italic leading-none text-accent/60">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex items-center gap-1.5 pt-1">
+                  {product.variants.slice(0, 4).map((v) => (
+                    <span
+                      key={v.id}
+                      className="h-3.5 w-3.5 rounded-full border border-line-strong"
+                      style={{ backgroundColor: v.frameColor }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="mt-12">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-muted">{product.category}</p>
+                <h2 className="mt-2 font-display text-3xl leading-tight tracking-tight transition-transform duration-300 group-hover:translate-x-1">
+                  {product.name}
+                </h2>
+                <div className="mt-5 flex items-baseline justify-between border-t border-line pt-4 text-sm">
+                  {product.price ? (
+                    <span className="text-foreground">
+                      {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-accent">Ver em 3D →</span>
+                </div>
+              </div>
+            </Link>
+          </RevealItem>
         ))}
       </RevealGroup>
     </div>

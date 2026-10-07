@@ -23,6 +23,9 @@ export function Header() {
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
+  // Páginas inteiras em tema claro: o header (texto branco) precisa de fundo escuro
+  const onLightPage = pathname === "/sobre";
+
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
@@ -31,7 +34,7 @@ export function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: duration.base, ease }}
       className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${
-        scrolled || open
+        scrolled || open || onLightPage
           ? "border-white/10 bg-black/85"
           : "border-transparent bg-transparent"
       }`}
@@ -44,14 +47,14 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
             src="/brand/logo.jpg"
-            alt="Óculos InCasa"
-            width={44}
-            height={44}
+            alt=""
+            width={40}
+            height={40}
             className="rounded-full"
             priority
           />
-          <span className="hidden text-sm font-semibold tracking-wide text-white sm:block">
-            Óculos InCasa
+          <span className="font-display text-xl leading-none tracking-tight text-white">
+            Óculos <span className="italic text-accent-soft">InCasa</span>
           </span>
         </Link>
 
@@ -61,7 +64,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className="relative px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white aria-[current=page]:text-white"
+              className="relative px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/70 transition-colors hover:text-white aria-[current=page]:text-white"
             >
               {link.label}
               {isActive(link.href) && (
@@ -83,7 +86,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 md:hidden"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center text-white transition-colors hover:bg-white/10 md:hidden"
           >
             <Icon name={open ? "close" : "menu"} />
           </button>
@@ -107,7 +110,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="flex min-h-12 items-center rounded-xl px-3 text-lg font-medium text-white/90 hover:bg-white/10"
+                    className="flex min-h-14 items-center border-t border-white/10 px-1 font-display text-3xl italic text-white/90 hover:text-accent-soft"
                   >
                     {link.label}
                   </Link>
