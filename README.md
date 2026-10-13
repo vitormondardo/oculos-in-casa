@@ -3,6 +3,8 @@
 Site institucional da **Óculos InCasa**, ótica com atendimento domiciliar.
 Destaque para a experiência de óculos em 3D animada pelo scroll da página.
 
+![Demonstração do site Óculos InCasa](docs/demo.gif)
+
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router) + TypeScript
