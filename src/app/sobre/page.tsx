@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { company } from "@/content/company";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { InstagramButton } from "@/components/ui/InstagramButton";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Kicker } from "@/components/ui/Kicker";
 
@@ -50,8 +51,9 @@ export default function SobrePage() {
             </RevealItem>
           </RevealGroup>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap gap-3">
             <WhatsAppButton>Fale com a gente</WhatsAppButton>
+            <InstagramButton />
           </div>
         </div>
 

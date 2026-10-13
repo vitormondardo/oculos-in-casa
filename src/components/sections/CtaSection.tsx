@@ -3,6 +3,7 @@
 import { ScrollSection } from "@/components/sections/ScrollSection";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { InstagramButton } from "@/components/ui/InstagramButton";
 import { Icon } from "@/components/ui/Icon";
 import { Kicker } from "@/components/ui/Kicker";
 
@@ -25,7 +26,10 @@ export function CtaSection() {
           </h2>
         </RevealItem>
         <RevealItem className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
-          <WhatsAppButton>Agendar meu atendimento</WhatsAppButton>
+          <div className="flex flex-wrap gap-3">
+            <WhatsAppButton>Agendar meu atendimento</WhatsAppButton>
+            <InstagramButton />
+          </div>
           <p className="inline-flex items-center gap-2 text-sm text-muted">
             <Icon name="check" size={18} className="text-teal" />
             Sem compromisso — agende pelo WhatsApp em poucos minutos.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollSection } from "@/components/sections/ScrollSection";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { InstagramButton } from "@/components/ui/InstagramButton";
 import { Icon } from "@/components/ui/Icon";
 import { buttonClass } from "@/components/ui/Button";
 import { company } from "@/content/company";
@@ -67,6 +68,7 @@ export function Hero() {
                 Ver catálogo
                 <Icon name="arrow" size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
+              <InstagramButton />
             </motion.div>
           </div>
         </div>
