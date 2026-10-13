@@ -57,6 +57,8 @@ export function ScrollRig() {
         lensColor={heroVariant.lensColor}
         metalness={heroVariant.metalness}
         roughness={heroVariant.roughness}
+        pattern={heroVariant.pattern}
+        lensFinish={heroVariant.lensFinish}
       />
     </group>
   );

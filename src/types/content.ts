@@ -11,6 +11,10 @@ export type FrameVariant = {
   metalness?: number;
   /** Roughness do material da armação (0-1) */
   roughness?: number;
+  /** Padrão do acetato (textura gerada no 3D) */
+  pattern?: "tortoise";
+  /** Acabamento da lente */
+  lensFinish?: "mirror";
 };
 
 export type Product = {

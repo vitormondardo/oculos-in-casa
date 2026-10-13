@@ -13,7 +13,7 @@ export const products: Product[] = [
     featured: true,
     variants: [
       { id: "preto", label: "Preto Fosco", frameColor: "#111111", lensColor: "#0a0a0a", metalness: 0.1, roughness: 0.6 },
-      { id: "tartaruga", label: "Tartaruga", frameColor: "#6b4a2b", lensColor: "#1a1208", metalness: 0.05, roughness: 0.7 },
+      { id: "tartaruga", label: "Tartaruga", frameColor: "#6b4a2b", lensColor: "#1a1208", metalness: 0.05, roughness: 0.3, pattern: "tortoise" },
       { id: "marfim", label: "Marfim", frameColor: "#efe6d8", lensColor: "#161616", metalness: 0.05, roughness: 0.5 },
     ],
   },
@@ -55,7 +55,7 @@ export const products: Product[] = [
     poster: "/brand/logo.jpg",
     price: 429,
     variants: [
-      { id: "dourado-espelhado", label: "Dourado Espelhado", frameColor: "#c9a24b", lensColor: "#e08a3c", metalness: 0.9, roughness: 0.15 },
+      { id: "dourado-espelhado", label: "Dourado Espelhado", frameColor: "#c9a24b", lensColor: "#e08a3c", metalness: 0.9, roughness: 0.15, lensFinish: "mirror" },
       { id: "grafite", label: "Grafite", frameColor: "#3a3a3a", lensColor: "#1a1a1a", metalness: 0.6, roughness: 0.3 },
     ],
   },
